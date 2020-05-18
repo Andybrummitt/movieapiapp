@@ -1,25 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route } from 'react-router-dom';
+import GetTopRated from './components/GetTopRated';
+import Genres from './components/Genres';
+import GetNewMovies from './components/GetNewMovies';
+import Home from './components/Home';
+import DisplayLogic from './components/DisplayLogic';
+import MovieContextProvider from './contexts/MovieContext';
+import Header from './components/Header';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <MovieContextProvider>
+          <Header />
+          <DisplayLogic />
+          <Route exact path="/" component={Home} />
+          <Route path="/genres" component={Genres} />
+          <Route path="/get-top-rated" component={GetTopRated} />
+          <Route path="/whats-upcoming" component={GetNewMovies} />
+        </MovieContextProvider>
+      </div>
+    </BrowserRouter>
   );
 }
 

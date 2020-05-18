@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +16,101 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@media(max-width: 600px){
+
+  .mobile-nav-container {
+    display: flex;
+    align-items: center;
+    padding: 3px;
+  }
+
+  .mobile-title {
+    flex: auto;
+    text-align: center;
+  }
+
+/* ------------------------- NAV BAR ------------------------- */
+
+  .navbar-main {
+    background: grey;
+    border-radius: 5px;
+  }
+
+  .navbar-main ul{
+    margin-left: 10px;
+    line-height: 2rem;
+  }
+
+  .navbar-main li {
+    list-style-type: none;
+  }
+
+  .navbar-main a {
+    text-decoration: none;
+    display: block;
+  }
+
+  #search-bar {
+    border-radius: 5px;
+    background: black;
+    color: white;
+    padding: 5px;
+    width: 50%;
+    border: none;
+  }
+
+  .hide-nav {
+    transform: translateX(-100%);
+  }
+
+  .display-nav {
+    transform: translateX(0%);
+  }
+
+  .hide-nav, .display-nav {
+    transition: 400ms ease;
+  }
+
+/* -------------------- HAMBURGER MENU -------------------- */
+
+  .hb-container {
+    height: 70px;
+    width: 70px;
+    padding: 10px;
+    background: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    border-radius: 5px;
+  }
+
+  .hb-bar {
+    height: 10px;
+    width: 50px;
+    background: black;
+    border-radius: 5px;
+  }
+
+  .hb-bar::before,
+  .hb-bar::after {
+    content: '';
+    border-radius: 5px;
+    position: absolute;
+    height: 10px;
+    width: 50px;
+    background: black;
+  }
+
+  .hb-bar::before {
+    transform: translateY(-20px);
+  }
+
+  .hb-bar::after {
+    transform: translateY(20px)
+  }
+
 }
