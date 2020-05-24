@@ -1,20 +1,23 @@
 import React, {useContext, useEffect, useState } from 'react';
 import { MovieContext } from '../contexts/MovieContext';
+import { GenreContext } from '../contexts/GenreContext';
 
 
 const DisplayMovies = (props) => {
-    const {setShouldDisplay} = useContext(MovieContext);
-    console.log('hello')
-    console.log(props.results)
+    const {setDisplaySearch} = useContext(MovieContext);
+    const {setDisplayGenres, setDisplayMovies} = useContext(GenreContext);
+
     let baseUrl = "https://image.tmdb.org/t/p/w500/";
     
-    //when component unmounts setShoulDisplay to false
+
     useEffect(() => {
         return function(){
-            setShouldDisplay(false)
+            setDisplayMovies(false);
+            setDisplayGenres(false);
+            setDisplaySearch(false);
         }
     })
-    
+
     return ( 
         <div>
             <h1>DisplayMovies</h1>

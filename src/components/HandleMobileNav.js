@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import HbMenu from './HbMenu';
 
 const HandleMobileNav = () => {
     useEffect(() => {
@@ -17,7 +18,9 @@ const HandleMobileNav = () => {
         let hbMenu = document.querySelector('.hb-container');
         hbMenu.addEventListener('click', () => toggleMobileNav())
     }, [])
-    return null;
+    return (
+        <HbMenu />
+    );
 }
 
 export default HandleMobileNav;

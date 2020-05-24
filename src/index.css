@@ -18,6 +18,15 @@ code {
     monospace;
 }
 
+.hide {
+  visibility: hidden;
+  position: absolute;
+}
+
+.display {
+  visibility: visible;
+}
+
 @media(max-width: 600px){
 
   .mobile-nav-container {
@@ -36,6 +45,7 @@ code {
   .navbar-main {
     background: grey;
     border-radius: 5px;
+    width: 100%;
   }
 
   .navbar-main ul{
@@ -63,10 +73,12 @@ code {
 
   .hide-nav {
     transform: translateX(-100%);
+    position:absolute;
   }
 
   .display-nav {
     transform: translateX(0%);
+    position: static;
   }
 
   .hide-nav, .display-nav {
@@ -111,6 +123,30 @@ code {
 
   .hb-bar::after {
     transform: translateY(20px)
+  }
+
+  /* ------------------------ GENRES COMPONENT -------------------- */
+
+  .genres-list-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .genres-list {
+    margin-top: 20px;
+    display: grid;
+    height: 80vh;
+    width: 90vw;
+    background: red;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .genres-list button {
+    align-self: center;
+    justify-self: center;
+    height: 100%;
+    width: 100%;
+    font-size: 1.5rem;
   }
 
 }
