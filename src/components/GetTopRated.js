@@ -3,11 +3,9 @@ import { MovieContext } from '../contexts/MovieContext';
 import DisplayMovies from './DisplayMovies';
 
 const GetTopRated = (props) => {
-    const {apikey, setShouldDisplay, shouldDisplay, displayTopRated, setDisplayTopRated} = useContext(MovieContext);
+    const {apikey, displayTopRated, setDisplayTopRated} = useContext(MovieContext);
     const [topRated, setTopRated] = useState([]);
 
-    console.log('get top rated mounted')
-    console.log(displayTopRated)
 
     let url = 'https://api.themoviedb.org/3/movie/top_rated?api_key=';
 
@@ -23,10 +21,10 @@ const GetTopRated = (props) => {
                         setTopRated(enDataArr)
                         })
                         .then(() => setDisplayTopRated(true))
-                            .catch(err => console.log(err))
-                            return function(){
-                                console.log('gettoprated unmounting')
-                            }
+                            .catch(err => {
+                                alert('Sorry, there seems to be a connection problem')
+                                console.log(err)
+                            })
                         },[]);
 
     return ( 

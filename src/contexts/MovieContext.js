@@ -1,5 +1,4 @@
-import React, {useState, createContext, useReducer} from 'react';
-// import rootReducer from '../reducers/rootReducer';
+import React, {useState, createContext} from 'react';
 
 export const MovieContext = createContext();
 
@@ -10,9 +9,10 @@ const MovieContextProvider = (props) => {
     const [displaySearch, setDisplaySearch] = useState(false);
     const [displayUpcoming, setDisplayUpcoming] = useState(false);
     const [recentSearches, setRecentSearches] = useState([]);
+    const [displayRecentSearches, setDisplayRecentSearches] = useState(false);
     const apikey = 'd9a59171ac85e8473d3808c854f7c0a6';
         return ( 
-            <MovieContext.Provider value={{movie, setMovie, shouldDisplay, setShouldDisplay, apikey, displayTopRated, setDisplayTopRated, displaySearch, setDisplaySearch, displayUpcoming, setDisplayUpcoming, recentSearches, setRecentSearches}}>
+            <MovieContext.Provider value={{movie, setMovie, shouldDisplay, setShouldDisplay, apikey, displayTopRated, setDisplayTopRated, displaySearch, setDisplaySearch, displayUpcoming, setDisplayUpcoming, recentSearches, setRecentSearches, displayRecentSearches, setDisplayRecentSearches}}>
                 {props.children}
             </MovieContext.Provider>
          );

@@ -3,7 +3,7 @@ import { MovieContext } from '../contexts/MovieContext';
 import DisplayMovies from './DisplayMovies';
 
 const HandleSearchRequest = () => {
-    const {movie, apikey, displaySearch} = useContext(MovieContext);
+    const {movie, apikey, displaySearch, setDisplaySearch} = useContext(MovieContext);
     const [loading, setLoading] = useState(true);
     const [results, setResults] = useState([]);
 
@@ -14,40 +14,43 @@ const HandleSearchRequest = () => {
     let mounted;
 
     useEffect(() => {
-        mounted = true;
+        mounted = true; 
     }, []);
 
     useEffect(() => {
             fetch(searchUrlAndKey)
-                .then(res => res.json())
+                .then(res => {
+                    return res.json()
+                })
                     .then(data => {
+                        if(data.results.length === 0){
+                            setDisplaySearch(false);
+                        }
                         let dataArr = [];
-                        for(let i = 0; i < 5; i++){
+                        for(let i = 0; i < data.results.length; i++){
                             dataArr.push(data.results[i])
                         }
-                        if(mounted){
-                            console.log('hello')
+                        if(mounted && data.results.length > 0){
                             setResults(dataArr)
                             setLoading(false)
                         }})
-                        //maybe need setresults and setloading in different .then methods
-                            .catch(err => console.log(err))
+                            .catch(err => {
+                                alert('Sorry, there seems to be a connection problem')
+                                console.log(err)
+                            })
                                 
                     }, []);
 
     useEffect(() => {
         return function(){
-            console.log('search component unmounting')
             mounted = false;
-            // 
         }
     })
             
     
     return ( 
         <div>
-        {console.log(loading, displaySearch)}
-            {loading === false && displaySearch === true && results.length > 0 ? <DisplayMovies results={results} /> : null}
+            {loading === false && displaySearch === true ? <DisplayMovies results={results} /> : null}
         </div>  
      );
 }

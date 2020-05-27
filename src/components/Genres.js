@@ -1,17 +1,12 @@
-import React, {useState, useEffect, useContext, useRef} from 'react';
+import React, {Fragment, useEffect, useContext, useRef} from 'react';
 import HandleGenresRequest from './HandleGenresRequest';
 import { GenreContext } from '../contexts/GenreContext';
 
 const Genres = () => {
-    const {id, setId, displayGenres, setDisplayGenres, setDisplayMovies} = useContext(GenreContext);
+    const {id, setId, displayGenres, setDisplayGenres} = useContext(GenreContext);
 
 
     const genresListContainerRef = useRef(null);
-
-    const renders = useRef(0);
-    console.log("genres renders: ", renders.current++);
-    console.log("-----------------------")
-
 
     useEffect(() => {
         if(id !== null){
@@ -19,8 +14,9 @@ const Genres = () => {
         }
     },[id]);
 
+
     return ( 
-        <div>
+        <Fragment>
             <div ref={genresListContainerRef} className="genres-list-container">
                 <div className="genres-list">
                     <button onClick={() => setId(16)}>Animation</button>
@@ -36,7 +32,7 @@ const Genres = () => {
                 </div>
             </div>
             {id !== null && displayGenres === true ? <HandleGenresRequest /> : null}
-        </div>
+        </Fragment>
      );
 }
 

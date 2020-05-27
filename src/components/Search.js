@@ -1,35 +1,52 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, Fragment} from 'react';
 import { MovieContext } from '../contexts/MovieContext';
 import HandleSearchRequest from './HandleSearchRequest';
 
 const Search = () => {
-    const {movie, displaySearch, recentSearches, setMovie, setDisplaySearch} = useContext(MovieContext)
-    console.log(movie, displaySearch)
+    const {movie, displaySearch, recentSearches, setMovie, setDisplaySearch, setDisplayRecentSearches, displayRecentSearches} = useContext(MovieContext)
 
-//map through recent searches in lis and buttons that onclick search the movie
+    useEffect(() => {
+        let searchBar = document.querySelector('#search-bar');
+        let searchButton = document.querySelector('#search-button');
+        searchBar.focus();
+        searchBar.addEventListener('keyup', (e) => {
+            if(e.keyCode === 13){
+                searchButton.focus();
+            }
+        })
+    }, [])
+
+    let searchHandled;
 
     return ( 
-        <div>
-            {recentSearches.length < 1 ? <p>You have no recent searches</p> : (
+        <Fragment>
+             {displayRecentSearches ?
                 <div>
-                    <p>Recent searches:</p>
+                    <p id="recent-searches-text">You have {recentSearches.length} recent searches</p>
                     <ul>
                         {recentSearches.map(movie => {
-                            return <li key={Math.random()*1000}><button onClick={() => {
-                                setDisplaySearch(true);
+                            return <li key={Math.random()*1000}><button id="recent-searches-li" onClick={() => {
                                 setMovie(movie);
+                                setDisplaySearch(true)
+                                setDisplayRecentSearches(false)
                             }}>{movie}</button></li>
                         })}
                     </ul>
-                </div>
-            )}
-                {movie !==  '' && displaySearch === true ? (
-                    //do i want to handlesearchrequest if movie doesnt change?
-                    <HandleSearchRequest />
-                ) : (
-                    <p>DisplaySearch is false {displaySearch}</p>
-                    )}
-        </div>
+                </div> : <button id="recent-searches-toggle" onClick={() => setDisplayRecentSearches(true)}>Display Recent Searches</button>
+            }
+                {(() => {
+                    if(movie !==  '' && displaySearch === true){
+                        searchHandled = <HandleSearchRequest />
+                    }
+                    else if(movie === '' && displaySearch === false){
+                        searchHandled = null;
+                    }
+                    else if(movie !== '' && displaySearch === false){
+                        searchHandled = <p className="no-movies-message">No movies found...</p>
+                    }
+                })()}
+                {searchHandled}
+    </Fragment>
      );
 }
  

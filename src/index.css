@@ -4,6 +4,21 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+:root {
+  --red-color: #cf1919;
+  --dark-hover-red-color: #941010;
+  --grey-color: #303030;
+  --dark-hover-grey-color: #1c1c1c; 
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,6 +26,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #303030;
 }
 
 code {
@@ -27,6 +43,20 @@ code {
   visibility: visible;
 }
 
+#movie-db-link {
+  color: lightblue;
+  font-size: 1.2rem;
+  text-decoration: underline;
+}
+
+.no-movies-message {
+  color: white;
+  font-size: 1.2rem;
+  margin: 2%;
+}
+
+/* ---------------------START OF MOBILE VIEW---------------------- */
+
 @media(max-width: 600px){
 
   .mobile-nav-container {
@@ -35,15 +65,16 @@ code {
     padding: 3px;
   }
 
-  .mobile-title {
+  .title-div {
     flex: auto;
     text-align: center;
+    color: white;
   }
 
 /* ------------------------- NAV BAR ------------------------- */
 
   .navbar-main {
-    background: grey;
+    background: var(--red-color);
     border-radius: 5px;
     width: 100%;
   }
@@ -60,15 +91,8 @@ code {
   .navbar-main a {
     text-decoration: none;
     display: block;
-  }
-
-  #search-bar {
-    border-radius: 5px;
-    background: black;
     color: white;
-    padding: 5px;
-    width: 50%;
-    border: none;
+    font-weight: 550;
   }
 
   .hide-nav {
@@ -85,13 +109,46 @@ code {
     transition: 400ms ease;
   }
 
+
+/*-----------------------RECENT SEARCHES-------------------*/
+
+#recent-searches-toggle {
+  height: 45px;
+  width: auto;
+  padding: 5px 10px;
+  font-size: 16px;
+  margin: 2% 0;
+  color: white;
+  font-weight: 550;
+  border-radius: 4px;
+  border: 1px solid white;
+  background: var(--red-color);
+}
+
+#recent-searches-text {
+  color: white;
+}
+
+#recent-searches-li {
+  color: white;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  font-size: 16px;
+  margin: 2% 0;
+  color: white;
+  font-weight: 550;
+  border-radius: 4px;
+  border: 1px solid white;
+  background: var(--red-color);
+}
+
 /* -------------------- HAMBURGER MENU -------------------- */
 
   .hb-container {
     height: 70px;
     width: 70px;
     padding: 10px;
-    background: red;
+    background: var(--red-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -125,7 +182,69 @@ code {
     transform: translateY(20px)
   }
 
-  /* ------------------------ GENRES COMPONENT -------------------- */
+}
+/* ------------------------ END OF MOBILE VIEW -------------------- */
+
+.app-title {
+  color: white;
+}
+
+#recent-searches-toggle {
+  cursor: pointer;
+}
+
+#recent-searches-li {
+  cursor: pointer;
+}
+
+#search-bar {
+  border-radius: 5px;
+  background: var(--grey-color);
+  color: white;
+  padding: 5px;
+  width: 50%;
+  border: none;
+}
+
+#search-button {
+  cursor: pointer;
+  margin-left: 1%;
+  height: 23px;
+  padding: 2px 5px;
+  width: auto;
+  border-radius: 3px;
+  border: none;
+  background: white;
+  color: var(--grey-color);
+  font-weight: 550;
+}
+
+
+
+  /* ------------------------ GENRES -------------------- */
+
+  .genres-text-and-button{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .genres-text-and-button p {
+    color: white;
+  }
+
+  .genres-text-and-button button {
+    cursor: pointer;
+    height: 45px;
+    width: auto;
+    padding: 5px 10px;
+    font-size: 16px;
+    margin: 2% 0;
+    color: white;
+    font-weight: 550;
+    border-radius: 4px;
+    border: 1px solid white;
+    background: var(--red-color);
+  }
 
   .genres-list-container {
     display: flex;
@@ -137,11 +256,15 @@ code {
     display: grid;
     height: 80vh;
     width: 90vw;
-    background: red;
     grid-template-columns: 1fr 1fr;
   }
 
   .genres-list button {
+    cursor: pointer;
+    background: var(--red-color);
+    border: 1px solid var(--grey-color);
+    color: white;
+    box-shadow: 0 0 2px inset white;
     align-self: center;
     justify-self: center;
     height: 100%;
@@ -149,4 +272,216 @@ code {
     font-size: 1.5rem;
   }
 
+  .genres-list button:hover {
+    font-size: 1.6rem;
+    background: var(--dark-hover-red-color);
+  }
+
+/* ----------------------MOVIES DISPLAY----------------- */
+
+.display-movies-container {
+  padding: 3%;
 }
+
+.display-movies-main-info {
+  margin-bottom: 5%;
+  text-align: center;
+}
+
+.display-movies-container li {
+  margin: 10% 0;
+}
+
+.display-movies-container img {
+  margin-bottom: 5%;
+  width: 60%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.display-movie {
+  background: white;
+  padding: 2%;
+  border: 10px solid var(--red-color);
+  border-radius: 5px;
+}
+
+/*-----------------------RECENT SEARCHES-------------------*/
+
+#recent-searches-toggle {
+  height: 45px;
+  width: auto;
+  padding: 5px 10px;
+  font-size: 16px;
+  margin: 2% 2%;
+  color: white;
+  font-weight: 550;
+  border-radius: 4px;
+  border: 1px solid white;
+  background: var(--red-color);
+}
+
+#recent-searches-text {
+  margin: 2%;
+  color: white;
+}
+
+#recent-searches-li {
+  color: white;
+  padding: 5px 10px;
+  font-size: 16px;
+  margin: 0.3% 2%;
+  color: white;
+  font-weight: 550;
+  border-radius: 4px;
+  border: 1px solid white;
+  background: var(--red-color);
+}
+
+
+/* --------------------HOME--------------------- */
+
+.home-div p{
+  color: white;
+  margin: 5% 5%;
+}
+
+/*--------------------WEB VIEW -----------------------------*/
+
+@media(max-width: 800px) and (min-width: 601px){
+  .navbar-main ul {
+    display: flex;
+    height: 50px;
+    margin-top: 10%;
+  }
+
+  .not-search {
+    flex: auto;
+  }
+
+  .not-search a {
+    color: white;
+    display: inline-block;
+    width: 100%;
+    line-height: 40px;
+    text-align: center;
+  }
+
+  .navbar-main .not-search:hover {
+    transition: 300ms ease;
+    background: var(--dark-hover-grey-color);
+    font-size: 18px;
+  }
+
+  .app-title {
+    position: absolute;
+    top: 5px;
+    left: 70px;
+  }
+
+  .title-div {
+    background: var(--red-color);
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 8%;
+  }
+
+  .search-bar-and-button a {
+    position: absolute;
+    top: 20px;
+    right: 70px;
+    display: flex;
+  }
+
+  #search-bar {
+    width: 170px;
+  }
+
+  .display-movies-container ul {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+  }
+  
+}
+
+@media(min-width: 801px) {
+
+  header {
+    display: flex;
+    position: sticky;
+    top: 0;
+    background: var(--grey-color);
+  }
+
+  .app-title {
+    color: white;
+    padding: 5px;
+  }
+
+  .mobile-nav-container {
+    flex: 1;
+    text-align: center;
+  }
+
+  .navbar-main {
+    width: 100%;
+    flex: 9;
+  }
+
+  .navbar-main ul {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background: var(--red-color);
+  }
+
+
+  .not-search {
+    flex: auto;
+    order: 1;
+  }
+
+  .not-search a {
+    color: white;
+    display: inline-block;
+    width: 100%;
+    line-height: 80px;
+    text-align: center;
+  }
+
+  .search-bar-and-button {
+    order: 0;
+    margin-left: 5px;
+  }
+
+  .navbar-main .not-search:hover {
+    transition: 300ms ease;
+    background: var(--grey-color);
+    font-size: 18px;
+  }
+
+  .genres-list {
+    margin-top: 20px;
+    display: grid;
+    height: 60vh;
+    width: 90vw;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 5px;
+  }
+
+
+  .display-movies-container ul {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+  }
+
+}
+

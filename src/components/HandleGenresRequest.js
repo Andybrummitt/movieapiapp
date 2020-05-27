@@ -1,4 +1,4 @@
-import React, {useEffect, useContext, useState}  from 'react';
+import React, {useEffect, useContext, Fragment}  from 'react';
 import GenresDisplay from './GenresDisplay';
 import { MovieContext } from '../contexts/MovieContext';
 import { GenreContext } from '../contexts/GenreContext';
@@ -22,13 +22,16 @@ const HandleGenresRequest = (props) => {
                         setMoviesListByGenre(dataArr)
                         setDisplayMovies(true)
                     })
-                        .catch(err => console.log(err))
+                        .catch(err => {
+                            alert('Sorry, there seems to be a connection problem')
+                            console.log(err)
+                        })
     }, []);
 
     return ( 
-        <div>
-            {displayMovies === true ? <GenresDisplay results={moviesListByGenre} /> : <p>Displaymovies not true!</p>}  
-        </div>
+        <Fragment>
+            {displayMovies && <GenresDisplay results={moviesListByGenre} />}  
+        </Fragment>
      );
 }
  
