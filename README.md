@@ -66,3 +66,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+APP NOTES
+
+This was my first experience using a 3rd party API (movie database API) and using react hooks. In hindsight I should have used useReducer hook in this project.
