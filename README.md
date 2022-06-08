@@ -1,3 +1,7 @@
+Project Information
+
+This was my first time working with react and APIs. The front end is built with HTML, CSS, JS and react as well as utilising the movieDB api.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
